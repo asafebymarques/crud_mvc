@@ -1,0 +1,27 @@
+body{
+    background-color:#EEEEEE;
+}
+header,section,footer{
+    max-width: 800px;
+    background-color: #FFFFFF;
+    margin: auto;
+}
+header{
+    height: 100px;
+    text-align: center;
+    margin-top: 10px;
+}
+section{
+    margin-top: 10px;
+}
+footer{
+    height: 100px;
+    text-align: center;
+    margin-top: 10px;
+}
+.aviso{
+    padding: 10px;
+    background-color: #FF0000;
+    border: 2px solid #FFFFFF;
+    margin: 10px;
+}
