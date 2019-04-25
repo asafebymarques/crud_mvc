@@ -9,15 +9,12 @@ header,section,footer{
 header{
     height: 100px;
     text-align: center;
-    margin-top: 10px;
 }
 section{
-    margin-top: 10px;
 }
 footer{
     height: 100px;
     text-align: center;
-    margin-top: 10px;
 }
 .aviso{
     padding: 10px;

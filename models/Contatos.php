@@ -15,6 +15,21 @@ class Contatos extends Model{
         return $array;
     }
 
+    public function get($id){
+        $array = array();
+
+        $sql = "SELECT * FROM contatos WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id',$id);
+        $sql->execute();
+
+        if($sql->rowCount()>0){
+            $array = $sql->fetch();
+        }
+
+        return $array;
+    }
+
     public function add($nome,$email){
         if($this->emailExists($email)==false){
             $sql = "INSERT INTO contatos (nome,email) VALUES (:nome, :email)";
@@ -29,17 +44,31 @@ class Contatos extends Model{
         }
     }
 
+    public function editar($nome, $id){
+        $sql = "UPDATE contatos SET nome = :nome WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':nome',$nome);
+        $sql->bindValue(':id',$id);
+        $sql->execute();
+    }
+
+    public function delete($id){
+        $sql = "DELETE FROM contatos WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id',$id);
+        $sql->execute();
+    }
+
     private function emailExists($email){
         $sql = "SELECT * FROM contatos WHERE email = :email";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':email',$email);
         $sql->execute();
 
-        if($sql->rowCounts()>0){
+        if($sql->rowCount()>0){
             return true;
         }else{
             return false;
         }
     }
-
 }

@@ -30,4 +30,33 @@ class contatosController extends Controller{
             header("Location: ".BASE_URL.'contatos/add');
         }
     }
+
+    public function edit($id){
+        $dados = array();
+        if(!empty($id)){
+            $contatos = new Contatos();
+            if(!empty($_POST['nome'])){
+                $nome = $_POST['nome'];
+                $contatos->editar($nome, $id);
+            }else{
+                $dados['info'] = $contatos->get($id);
+
+                if(isset($dados['info']['id'])){
+                    $this->loadTemplate('edit', $dados);
+                    exit;
+                }  
+            }
+        }
+
+        header("Location: ".BASE_URL);
+    }
+
+    public function del($id){
+        if(!empty($id)){
+            $contatos = new Contatos();
+            $contatos->delete($id);
+        }
+        
+        header("Location: ".BASE_URL);
+    }
 }
